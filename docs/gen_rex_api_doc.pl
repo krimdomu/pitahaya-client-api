@@ -36,16 +36,17 @@ my $page     = $site->get_page(29);
 my @children = $page->children;
 
 my ($api_version_page) = grep { $_->name eq $version } @children;
-
-if ( !$api_version_page ) {
-  $api_version_page = $page->add_to_children(
-    {
-      name      => "$version",
-      title     => "API Documentation for Version $version",
-      type_name => "api_version",
-    }
-  );
+if($api_version_page) {
+  $api_version_page->remove;
 }
+
+$api_version_page = $page->add_to_children(
+  {
+    name      => "$version",
+    title     => "API Documentation for Version $version",
+    type_name => "api_version",
+  }
+);
 
 my @dirs = ($rex_dir);
 

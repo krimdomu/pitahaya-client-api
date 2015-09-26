@@ -98,5 +98,22 @@ sub add_to_children {
   }
 }
 
+sub remove {
+  my ($self) = @_;
+
+  my $tx =
+    $self->api->ua->delete(
+    $self->api->url . "/admin/" . $self->site->name . "/page/" . $self->id,
+    { Accept => "application/json" }  );
+
+  if ( $tx->success ) {
+    my $ref = $tx->res->json;
+    return 1;
+  }
+  
+  return 0;
+}
+
+
 
 1;
