@@ -20,6 +20,7 @@ has c_date        => ( is => 'rwp' );
 has id            => ( is => 'rwp' );
 has data          => ( is => 'rwp' );
 has m_date        => ( is => 'rwp' );
+has root_page_id  => ( is => 'rwp' );
 
 sub BUILD {
   my ($self) = @_;
@@ -52,5 +53,6 @@ sub get_page {
   my ( $self, $id ) = @_;
   return Pitahaya::API::Page->new( site => $self, api => $self->api, id => $id );
 }
+
 
 1;
